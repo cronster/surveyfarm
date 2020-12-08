@@ -1,0 +1,84 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "testSSL",
+    "version" : "2020-08-18T09:59:14Z"
+  },
+  "servers" : [ {
+    "url" : "https://qz3qytujgh.execute-api.us-east-1.amazonaws.com/{basePath}",
+    "variables" : {
+      "basePath" : {
+        "default" : "/dev"
+      }
+    }
+  } ],
+  "paths" : {
+    "/hello" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Empty"
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "type" : "http",
+          "uri" : "http://httpbin.org/get",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "passthroughBehavior" : "when_no_match",
+          "httpMethod" : "GET"
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Empty" : {
+        "title" : "Empty Schema",
+        "type" : "object"
+      }
+    }
+  },
+  "x-amazon-apigateway-documentation" : {
+    "version" : "1",
+    "createdDate" : "2020-08-19T06:05:11Z",
+    "documentationParts" : [ {
+      "location" : {
+        "type" : "API"
+      },
+      "properties" : {
+        "description" : "Used for testing SSL certs"
+      }
+    }, {
+      "location" : {
+        "type" : "QUERY_PARAMETER",
+        "path" : "/hello",
+        "method" : "GET",
+        "name" : "xsXC"
+      },
+      "properties" : {
+        "description" : "CHECKING THIS"
+      }
+    }, {
+      "location" : {
+        "type" : "REQUEST_HEADER",
+        "path" : "/hello",
+        "method" : "GET",
+        "name" : "hello"
+      },
+      "properties" : {
+        "description" : "just for laugh gags"
+      }
+    } ]
+  }
+}

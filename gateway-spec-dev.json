@@ -1,0 +1,53 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "delons",
+    "version" : "2020-08-19T04:00:55Z"
+  },
+  "servers" : [ {
+    "url" : "https://kq4jnxqan1.execute-api.us-east-2.amazonaws.com/{basePath}",
+    "variables" : {
+      "basePath" : {
+        "default" : "/prod"
+      }
+    }
+  } ],
+  "paths" : {
+    "/hello" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Empty"
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "{\"statusCode\": 200}"
+          },
+          "passthroughBehavior" : "when_no_match",
+          "type" : "mock"
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Empty" : {
+        "title" : "Empty Schema",
+        "type" : "object"
+      }
+    }
+  }
+}
